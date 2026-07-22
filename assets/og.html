@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --bg:      #181210;
+    --panel:   #221a17;
+    --ink:     #EDE6D8;
+    --soft:    #b6ab9a;
+    --accent:  #C97B85;
+    --hair:    #46372f;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(1100px 560px at 86% -16%, rgba(201,123,133,0.18), transparent 60%),
+      linear-gradient(180deg, #1c1512 0%, #181210 100%);
+    font-family: var(--sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    padding: 82px 90px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .brand svg { width: 66px; height: 66px; }
+  .wordmark { font-size: 46px; font-weight: 800; letter-spacing: -0.035em; }
+  .tag {
+    font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--soft); border: 1px solid var(--hair); border-radius: 999px; padding: 8px 18px;
+  }
+
+  .headline { max-width: 1000px; }
+  .headline h1 { font-size: 58px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
+  .headline .accent { color: var(--accent); }
+  .headline p {
+    margin-top: 20px; font-size: 27px; font-weight: 500; color: var(--soft);
+    letter-spacing: -0.01em; max-width: 34ch; line-height: 1.34;
+  }
+
+  .rulerwrap { display: flex; align-items: center; gap: 26px; }
+  .ruler { flex: 1; height: 60px; }
+  .csp {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 24px; font-weight: 700; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 20px;
+    white-space: nowrap;
+  }
+  .csp .none { color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#221a17"/>
+        <rect x="5" y="14" width="22" height="4" rx="1" fill="#EDE6D8" opacity="0.28"/>
+        <g stroke="#EDE6D8" stroke-width="0.9" opacity="0.5">
+          <line x1="8" y1="12.5" x2="8" y2="19.5"/><line x1="12" y1="13.2" x2="12" y2="18.8"/>
+          <line x1="16" y1="13.2" x2="16" y2="18.8"/><line x1="20" y1="13.2" x2="20" y2="18.8"/>
+          <line x1="24" y1="12.5" x2="24" y2="19.5"/>
+        </g>
+        <line x1="19" y1="9" x2="19" y2="23" stroke="#C97B85" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="19" cy="16" r="2.6" fill="#C97B85"/>
+      </svg>
+      <span class="wordmark">moodscale</span>
+    </div>
+    <span class="tag">explained</span>
+  </div>
+
+  <div class="headline">
+    <h1>How a private PHQ-9 &amp; GAD-7<br>self-test <span class="accent">actually works</span>.</h1>
+    <p>Scored on your device, never on a server &mdash; and the browser enforces it.</p>
+  </div>
+
+  <div class="rulerwrap">
+    <svg class="ruler" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
+      <rect x="0"   y="16" width="185" height="28" fill="#C97B85" fill-opacity="0.14"/>
+      <rect x="185" y="16" width="185" height="28" fill="#C97B85" fill-opacity="0.28"/>
+      <rect x="370" y="16" width="185" height="28" fill="#C97B85" fill-opacity="0.42"/>
+      <rect x="555" y="16" width="185" height="28" fill="#C97B85" fill-opacity="0.56"/>
+      <rect x="740" y="16" width="260" height="28" fill="#C97B85" fill-opacity="0.72"/>
+      <g stroke="#b6ab9a" stroke-width="1">
+        <line x1="0" y1="12" x2="0" y2="48"/><line x1="185" y1="12" x2="185" y2="48"/>
+        <line x1="370" y1="12" x2="370" y2="48"/><line x1="555" y1="12" x2="555" y2="48"/>
+        <line x1="740" y1="12" x2="740" y2="48"/><line x1="1000" y1="12" x2="1000" y2="48"/>
+      </g>
+      <line x1="470" y1="4" x2="470" y2="56" stroke="#C97B85" stroke-width="5"/>
+      <circle cx="470" cy="30" r="9" fill="#C97B85" stroke="#181210" stroke-width="3"/>
+    </svg>
+    <span class="csp">connect-src <span class="none">'none'</span></span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'">
+  <title>moodscale explained — how a private PHQ-9 & GAD-7 self-test works</title>
+  <meta name="description" content="An animated walkthrough of how moodscale scores the PHQ-9 and GAD-7 entirely in your browser: verbatim questions, the published severity band, a calm crisis panel, and a privacy guarantee the browser itself enforces.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://sreenivas-sadhu-prabhakara.github.io/moodscale-explained/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Sreenivas Sadhu Prabhakara">
+  <meta name="keywords" content="how PHQ-9 scoring works, private mental health test explained, PHQ-9 GAD-7 severity bands, offline depression screening, connect-src none privacy, moodscale explainer, screening not diagnosis">
+  <meta name="theme-color" content="#181210" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="moodscale explained">
+  <meta property="og:title" content="How a private PHQ-9 & GAD-7 self-test works — moodscale explained">
+  <meta property="og:description" content="An animated walkthrough: verbatim questions, the exact published severity band, a calm crisis panel, and privacy the browser itself enforces (connect-src 'none').">
+  <meta property="og:url" content="https://sreenivas-sadhu-prabhakara.github.io/moodscale-explained/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://sreenivas-sadhu-prabhakara.github.io/moodscale-explained/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A graduated oxblood severity band with one score marker, over the words 'scored on your device, never on a server'.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How a private PHQ-9 & GAD-7 self-test works — moodscale explained">
+  <meta name="twitter:description" content="An animated walkthrough: verbatim questions, the exact published band, a calm crisis panel, and privacy the browser itself enforces.">
+  <meta name="twitter:image" content="https://sreenivas-sadhu-prabhakara.github.io/moodscale-explained/og-image.png">
+  <meta name="twitter:image:alt" content="A graduated oxblood severity band with one score marker.">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Structured data (data block; not affected by script-src) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "moodscale explained",
+    "description": "An animated single-page explainer of how moodscale, a private PHQ-9 and GAD-7 self-test, scores questionnaires entirely on your device and reports only the published severity band.",
+    "url": "https://sreenivas-sadhu-prabhakara.github.io/moodscale-explained/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any (modern web browser)",
+    "browserRequirements": "Requires a modern web browser.",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "license": "https://opensource.org/licenses/MIT",
+    "author": { "@type": "Person", "name": "Sreenivas Sadhu Prabhakara" },
+    "softwareVersion": "0.1.0",
+    "featureList": [
+      "Animated walkthrough of PHQ-9 and GAD-7 scoring",
+      "Explains the published severity bands with citations",
+      "Shows how the crisis panel and helpline directory work",
+      "Explains the connect-src 'none' privacy guarantee",
+      "Links to the live moodscale app"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does moodscale keep my answers private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The page's own Content-Security-Policy sets connect-src to 'none', so the browser physically blocks every outbound network request. Scoring runs in your browser and history is stored only in local storage. Privacy is enforced by the browser, not merely promised."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the PHQ-9 or GAD-7 score a diagnosis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Both are screening questionnaires, not diagnostic tests. moodscale shows only the total and the published severity band label with a citation, and adds no interpretation. Only a qualified clinician can diagnose depression or anxiety."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the published PHQ-9 severity bands?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "0-4 minimal, 5-9 mild, 10-14 moderate, 15-19 moderately severe, and 20-27 severe, from Kroenke, Spitzer & Williams (2001). GAD-7 bands are 0-4 minimal, 5-9 mild, 10-14 moderate, 15-21 severe (Spitzer et al., 2006)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this explainer the app itself?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This page explains how the moodscale self-test works. To take the test, open the live app at sreenivas-sadhu-prabhakara.github.io/moodscale/."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the explainer</a>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <span class="wordmark">
+        <span class="wordmark__ruler" aria-hidden="true"></span>moodscale
+        <span class="wordmark__tag">explained</span>
+      </span>
+      <a class="cta cta--sm" href="https://sreenivas-sadhu-prabhakara.github.io/moodscale/" rel="noopener">
+        Open the app<span class="cta__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HOOK ===================== -->
+    <section class="scene scene--hook" id="hook" aria-labelledby="hookH">
+      <div class="scene__inner">
+        <p class="eyebrow">A private self-test, explained</p>
+        <h1 id="hookH">How a private PHQ-9 &amp; GAD-7 self-test works &mdash; <span class="accent">scored on your device, never on a server</span></h1>
+        <p class="lede">Search &ldquo;PHQ-9 test online&rdquo; and most results quietly log your answers to sell you telehealth. <em>moodscale</em> does the opposite: it reproduces the two questionnaires word for word, scores them in your browser, and shows only the published severity band. This page shows you exactly how &mdash; scroll to watch.</p>
+
+        <!-- hero: the graduated band drawing itself + marker landing -->
+        <figure class="hero-band" aria-hidden="true">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet" class="bandsvg bandsvg--hero">
+            <g class="band-seg">
+              <rect x="0"   y="46" width="185" height="34" class="seg seg1"/>
+              <rect x="185" y="46" width="185" height="34" class="seg seg2"/>
+              <rect x="370" y="46" width="185" height="34" class="seg seg3"/>
+              <rect x="555" y="46" width="185" height="34" class="seg seg4"/>
+              <rect x="740" y="46" width="260" height="34" class="seg seg5"/>
+            </g>
+            <g class="band-ticks">
+              <line x1="0" y1="40" x2="0" y2="86"/><line x1="185" y1="40" x2="185" y2="86"/>
+              <line x1="370" y1="40" x2="370" y2="86"/><line x1="555" y1="40" x2="555" y2="86"/>
+              <line x1="740" y1="40" x2="740" y2="86"/><line x1="1000" y1="40" x2="1000" y2="86"/>
+            </g>
+            <g class="marker marker--hero">
+              <line x1="470" y1="26" x2="470" y2="100" class="marker__stem"/>
+              <circle cx="470" cy="63" r="12" class="marker__dot"/>
+            </g>
+          </svg>
+          <figcaption class="hero-band__cap">The graduated band &mdash; one marker at your score, sitting inside the published cutoff ranges.</figcaption>
+        </figure>
+
+        <p class="scroll-hint" aria-hidden="true"><span class="scroll-hint__word">Scroll</span><span class="scroll-hint__mouse"></span></p>
+      </div>
+    </section>
+
+    <!-- ===================== THE PROBLEM ===================== -->
+    <section class="scene scene--problem" id="problem" aria-labelledby="probH">
+      <div class="scene__inner">
+        <p class="eyebrow eyebrow--accent">The real problem</p>
+        <h2 id="probH">You wanted a number. They wanted your data.</h2>
+        <div class="problem-grid">
+          <div class="prob-card prob-card--bad reveal">
+            <p class="prob-card__label">A typical &ldquo;free online test&rdquo;</p>
+            <ul class="prob-list">
+              <li><span class="pip pip--x" aria-hidden="true"></span>Answers <b>posted to a server</b> as you tap</li>
+              <li><span class="pip pip--x" aria-hidden="true"></span>Email gate before your score</li>
+              <li><span class="pip pip--x" aria-hidden="true"></span>Ad &amp; analytics trackers loaded</li>
+              <li><span class="pip pip--x" aria-hidden="true"></span>An <b>interpretation</b> it isn&rsquo;t qualified to give</li>
+            </ul>
+            <div class="wire wire--out" aria-hidden="true">
+              <span class="wire__node">you</span>
+              <span class="wire__packets"><i></i><i></i><i></i></span>
+              <span class="wire__node wire__node--server">server</span>
+            </div>
+          </div>
+          <div class="prob-card prob-card--good reveal">
+            <p class="prob-card__label">moodscale</p>
+            <ul class="prob-list">
+              <li><span class="pip pip--check" aria-hidden="true"></span>Everything computed <b>in your browser</b></li>
+              <li><span class="pip pip--check" aria-hidden="true"></span>No sign-up, no email, straight to the score</li>
+              <li><span class="pip pip--check" aria-hidden="true"></span>Zero trackers &mdash; the CSP forbids them</li>
+              <li><span class="pip pip--check" aria-hidden="true"></span>Only the <b>published band label</b>, cited &mdash; no advice</li>
+            </ul>
+            <div class="wire wire--blocked" aria-hidden="true">
+              <span class="wire__node">you</span>
+              <span class="wire__packets wire__packets--stopped"><i></i><i></i><i></i></span>
+              <span class="wire__wall">blocked</span>
+              <span class="wire__node wire__node--server">server</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 1: VERBATIM QUESTIONS ===================== -->
+    <section class="scene scene--how" id="how-verbatim" aria-labelledby="howVH">
+      <div class="scene__inner">
+        <p class="eyebrow">How it works &middot; 1 of 4</p>
+        <h2 id="howVH">The exact questionnaire &mdash; nothing reworded</h2>
+        <p class="scene__lede">You answer the public-domain PHQ-9 or GAD-7 with the published wording and the four published response options. Every item is required &mdash; no answer is ever silently assumed to be zero.</p>
+
+        <div class="qdemo reveal">
+          <p class="qdemo__stem">Over the last 2 weeks, how often have you been bothered by&hellip;</p>
+          <p class="qdemo__item"><span class="qdemo__num">3.</span> Trouble falling or staying asleep, or sleeping too much</p>
+          <div class="qdemo__opts" role="radiogroup" aria-label="Demonstration answer options (not interactive)">
+            <span class="opt" style="--i:0">Not at all<span class="opt__v">0</span></span>
+            <span class="opt opt--on" style="--i:1">Several days<span class="opt__v">1</span></span>
+            <span class="opt" style="--i:2">More than half the days<span class="opt__v">2</span></span>
+            <span class="opt" style="--i:3">Nearly every day<span class="opt__v">3</span></span>
+          </div>
+          <p class="qdemo__note">Public-domain wording, reproduced verbatim &mdash; response values 0&ndash;3.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 2: SCORING ===================== -->
+    <section class="scene scene--how" id="how-score" aria-labelledby="howSH">
+      <div class="scene__inner">
+        <p class="eyebrow">How it works &middot; 2 of 4</p>
+        <h2 id="howSH">The score is pure addition &mdash; and it lands on the band</h2>
+        <p class="scene__lede">There is no model, no AI, no guesswork. The total is the sum of your item values. Watch nine answers add up, then the marker slide to where that total falls in the <em>published</em> cutoff ranges.</p>
+
+        <div class="score-demo reveal">
+          <div class="adder" aria-hidden="true">
+            <span class="adder__cell" style="--d:0">1</span>
+            <span class="adder__cell" style="--d:1">2</span>
+            <span class="adder__cell" style="--d:2">3</span>
+            <span class="adder__cell" style="--d:3">0</span>
+            <span class="adder__cell" style="--d:4">1</span>
+            <span class="adder__cell" style="--d:5">2</span>
+            <span class="adder__cell" style="--d:6">3</span>
+            <span class="adder__cell" style="--d:7">0</span>
+            <span class="adder__cell" style="--d:8">1</span>
+            <span class="adder__eq">=</span>
+            <span class="adder__total">13</span>
+          </div>
+
+          <svg viewBox="0 0 1000 150" preserveAspectRatio="xMidYMid meet" class="bandsvg bandsvg--score" aria-hidden="true">
+            <g class="band-seg">
+              <rect x="0"   y="60" width="185" height="34" class="seg seg1"/>
+              <rect x="185" y="60" width="185" height="34" class="seg seg2"/>
+              <rect x="370" y="60" width="185" height="34" class="seg seg3"/>
+              <rect x="555" y="60" width="185" height="34" class="seg seg4"/>
+              <rect x="740" y="60" width="260" height="34" class="seg seg5"/>
+            </g>
+            <g class="band-ticks">
+              <line x1="0" y1="54" x2="0" y2="100"/><line x1="185" y1="54" x2="185" y2="100"/>
+              <line x1="370" y1="54" x2="370" y2="100"/><line x1="555" y1="54" x2="555" y2="100"/>
+              <line x1="740" y1="54" x2="740" y2="100"/><line x1="1000" y1="54" x2="1000" y2="100"/>
+            </g>
+            <g class="band-labels">
+              <text x="92"  y="128" class="blab">0&ndash;4</text>
+              <text x="277" y="128" class="blab">5&ndash;9</text>
+              <text x="462" y="128" class="blab">10&ndash;14</text>
+              <text x="647" y="128" class="blab">15&ndash;19</text>
+              <text x="870" y="128" class="blab">20&ndash;27</text>
+            </g>
+            <g class="marker marker--score">
+              <line x1="0" y1="40" x2="0" y2="114" class="marker__stem"/>
+              <circle cx="0" cy="77" r="12" class="marker__dot"/>
+            </g>
+          </svg>
+          <p class="score-verdict reveal">A PHQ-9 of <b>13</b> is shown as <span class="band-chip">Moderate</span> &mdash; the published label, cited to Kroenke, Spitzer &amp; Williams (2001). <em>moodscale adds no interpretation of its own.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 3: CRISIS PANEL ===================== -->
+    <section class="scene scene--how" id="how-crisis" aria-labelledby="howCH">
+      <div class="scene__inner">
+        <p class="eyebrow">How it works &middot; 3 of 4</p>
+        <h2 id="howCH">If item 9 isn&rsquo;t zero, help comes first &mdash; calmly</h2>
+        <p class="scene__lede">The PHQ-9&rsquo;s ninth item asks about self-harm. Any answer of 1 or more surfaces a calm helpline panel <em>above</em> the score &mdash; unskippable until acknowledged &mdash; and a &ldquo;Need help now?&rdquo; link stays one tap away in the header and footer.</p>
+
+        <div class="crisis-demo reveal" role="group" aria-label="Illustration of the crisis panel">
+          <div class="crisis-demo__head">
+            <span class="crisis-demo__dot" aria-hidden="true"></span>
+            <b>You don&rsquo;t have to face this alone</b>
+          </div>
+          <p class="crisis-demo__body">A directory of verified numbers &mdash; not live help. If you are in immediate danger, call your local emergency services.</p>
+          <ul class="hlines">
+            <li><b>Tele-MANAS</b><span>14416 / 1-800-891-4416</span></li>
+            <li><b>KIRAN</b><span>1800-599-0019</span></li>
+            <li><b>US 988</b><span>Suicide &amp; Crisis Lifeline</span></li>
+            <li><b>Samaritans (UK/IE)</b><span>116 123</span></li>
+          </ul>
+          <p class="crisis-demo__ver">Each number shows the date it was verified against an official source.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 4: TREND ===================== -->
+    <section class="scene scene--how" id="how-trend" aria-labelledby="howTH">
+      <div class="scene__inner">
+        <p class="eyebrow">How it works &middot; 4 of 4</p>
+        <h2 id="howTH">Every check-in is saved &mdash; only on your device</h2>
+        <p class="scene__lede">Each completed check-in is stored in your browser&rsquo;s local storage with an ISO timestamp. A per-scale trend chart shades its background using the <em>same</em> published cutoffs as the scorer &mdash; one source of truth, no drift.</p>
+
+        <div class="trend-demo reveal">
+          <svg viewBox="0 0 1000 320" preserveAspectRatio="xMidYMid meet" class="trendsvg" aria-hidden="true">
+            <!-- band-shaded background (same cutoffs) -->
+            <rect x="70" y="20"  width="900" height="52" class="tband tband5"/>
+            <rect x="70" y="72"  width="900" height="52" class="tband tband4"/>
+            <rect x="70" y="124" width="900" height="52" class="tband tband3"/>
+            <rect x="70" y="176" width="900" height="52" class="tband tband2"/>
+            <rect x="70" y="228" width="900" height="52" class="tband tband1"/>
+            <g class="taxis">
+              <line x1="70" y1="20" x2="70" y2="280"/>
+              <line x1="70" y1="280" x2="970" y2="280"/>
+              <text x="52" y="55"  class="tlab">27</text>
+              <text x="52" y="185" class="tlab">14</text>
+              <text x="52" y="283" class="tlab">0</text>
+            </g>
+            <!-- descending trend polyline -->
+            <polyline class="tline" points="150,96 330,150 510,140 690,206 870,244"/>
+            <g class="tdots">
+              <circle cx="150" cy="96"  r="7" style="--d:0"/>
+              <circle cx="330" cy="150" r="7" style="--d:1"/>
+              <circle cx="510" cy="140" r="7" style="--d:2"/>
+              <circle cx="690" cy="206" r="7" style="--d:3"/>
+              <circle cx="870" cy="244" r="7" style="--d:4"/>
+            </g>
+          </svg>
+          <p class="trend-demo__cap">Raw scores over time, ready to print or export as CSV for your clinician. Trend lines carry measurement error &mdash; they are not a measure of treatment response.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRIVACY GUARANTEE ===================== -->
+    <section class="scene scene--privacy" id="privacy" aria-labelledby="privH">
+      <div class="scene__inner">
+        <p class="eyebrow eyebrow--accent">The guarantee</p>
+        <h2 id="privH">Privacy the browser itself enforces</h2>
+        <p class="scene__lede">Most apps <em>promise</em> not to send your data. moodscale ships a security policy that makes sending it impossible &mdash; the browser blocks every outbound request before it leaves.</p>
+
+        <div class="csp-card reveal">
+          <code class="csp-code">connect-src <span class="csp-none">'none'</span></code>
+          <p class="csp-card__say">No fetch. No XHR. No WebSocket. No analytics beacon. No CDN. No external font.</p>
+          <div class="csp-anim" aria-hidden="true">
+            <span class="csp-anim__from">your answers</span>
+            <span class="csp-anim__try"><i></i><i></i><i></i></span>
+            <span class="csp-anim__shield">
+              <svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.4 2.4L15.8 9.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="csp-anim__net">the network</span>
+          </div>
+        </div>
+        <p class="csp-foot">Consequence: history lives only in local storage. Clearing site data erases it &mdash; the CSV/PDF export is your only backup.</p>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURE TOUR ===================== -->
+    <section class="scene scene--tour" id="tour" aria-labelledby="tourH">
+      <div class="scene__inner">
+        <p class="eyebrow">At a glance</p>
+        <h2 id="tourH">What you get</h2>
+        <ul class="tour-grid">
+          <li class="tour-card reveal">
+            <span class="tour-ic" aria-hidden="true">
+              <svg viewBox="0 0 32 20"><rect x="1" y="8" width="30" height="4" rx="1" class="ic-band"/><line x1="20" y1="3" x2="20" y2="17" class="ic-mark"/><circle cx="20" cy="10" r="3" class="ic-dot"/></svg>
+            </span>
+            <h3>Two validated instruments</h3>
+            <p>PHQ-9 (depression) and GAD-7 (anxiety), verbatim, with the four published options.</p>
+          </li>
+          <li class="tour-card reveal">
+            <span class="tour-ic" aria-hidden="true">
+              <svg viewBox="0 0 32 20"><text x="16" y="15" text-anchor="middle" class="ic-num">13</text></svg>
+            </span>
+            <h3>Published band only</h3>
+            <p>The exact severity label, cited to the source paper. No advice, no interpretation.</p>
+          </li>
+          <li class="tour-card reveal">
+            <span class="tour-ic" aria-hidden="true">
+              <svg viewBox="0 0 32 20"><path d="M16 3 8 5.5v4.5c0 3.2 3 5.6 8 7 5-1.4 8-3.8 8-7V5.5z" fill="none" class="ic-shield"/></svg>
+            </span>
+            <h3>Calm crisis panel</h3>
+            <p>Item-9 safety handling with a verified helpline directory, always one tap away.</p>
+          </li>
+          <li class="tour-card reveal">
+            <span class="tour-ic" aria-hidden="true">
+              <svg viewBox="0 0 32 20"><polyline points="3,15 11,9 18,11 29,4" fill="none" class="ic-line"/></svg>
+            </span>
+            <h3>Private history &amp; trend</h3>
+            <p>Every check-in saved locally, charted against the same published cutoffs.</p>
+          </li>
+          <li class="tour-card reveal">
+            <span class="tour-ic" aria-hidden="true">
+              <svg viewBox="0 0 32 20"><rect x="8" y="2" width="16" height="16" rx="2" fill="none" class="ic-sheet"/><line x1="11" y1="7" x2="21" y2="7" class="ic-rule"/><line x1="11" y1="11" x2="21" y2="11" class="ic-rule"/><line x1="11" y1="15" x2="17" y2="15" class="ic-rule"/></svg>
+            </span>
+            <h3>Clinician handoff</h3>
+            <p>A clean print-to-PDF sheet and an RFC-4180 CSV export of your full history.</p>
+          </li>
+          <li class="tour-card reveal">
+            <span class="tour-ic" aria-hidden="true">
+              <svg viewBox="0 0 32 20"><circle cx="16" cy="10" r="7" fill="none" class="ic-globe"/><line x1="9" y1="10" x2="23" y2="10" class="ic-rule"/><path d="M16 3c3 2 3 12 0 14M16 3c-3 2-3 12 0 14" fill="none" class="ic-globe"/><line x1="4" y1="4" x2="28" y2="16" class="ic-slash"/></svg>
+            </span>
+            <h3>Works fully offline</h3>
+            <p>No network, no accounts, no tracking &mdash; open it once and it keeps working.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="scene scene--cta" id="cta" aria-labelledby="ctaH">
+      <div class="scene__inner scene__inner--center">
+        <figure class="cta-band" aria-hidden="true">
+          <svg viewBox="0 0 400 60" preserveAspectRatio="xMidYMid meet" class="bandsvg">
+            <rect x="0"   y="24" width="74"  height="16" class="seg seg1"/>
+            <rect x="74"  y="24" width="74"  height="16" class="seg seg2"/>
+            <rect x="148" y="24" width="74"  height="16" class="seg seg3"/>
+            <rect x="222" y="24" width="74"  height="16" class="seg seg4"/>
+            <rect x="296" y="24" width="104" height="16" class="seg seg5"/>
+            <line x1="188" y1="14" x2="188" y2="50" class="marker__stem"/>
+            <circle cx="188" cy="32" r="6" class="marker__dot"/>
+          </svg>
+        </figure>
+        <h2 id="ctaH">Take the test &mdash; privately, right now</h2>
+        <p class="scene__lede scene__lede--center">The real thing: verbatim PHQ-9 &amp; GAD-7, the published band, your private history &mdash; all on your device.</p>
+        <a class="cta cta--big" href="https://sreenivas-sadhu-prabhakara.github.io/moodscale/" rel="noopener">
+          Open moodscale<span class="cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <p class="cta__sub">Free &middot; open source &middot; no sign-up &middot; nothing leaves your browser</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="foot__inner">
+        <p class="foot__disc"><b>Disclaimer.</b> This page explains a screening tool; it is not the test and not medical advice. The PHQ-9 and GAD-7 are screening questionnaires, not diagnostic tests &mdash; only a qualified clinician can diagnose depression or anxiety. This is not a crisis service; helpline numbers change and were verified on the app&rsquo;s stated date. Provided under the MIT License &ldquo;as is&rdquo;, without warranty; the author accepts no liability for any loss, injury, or damage arising from its use.</p>
+        <p class="foot__links">
+          <a href="https://sreenivas-sadhu-prabhakara.github.io/moodscale/" rel="noopener">Open the app</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="https://github.com/Sreenivas-Sadhu-Prabhakara/moodscale" rel="noopener">Source</a>
+          <span aria-hidden="true">&middot;</span>
+          <span>MIT &copy; 2026 Sreenivas Sadhu Prabhakara</span>
+        </p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
